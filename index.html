@@ -132,9 +132,7 @@
   <body>
     <main class="page">
       <h1>PTE Collocations</h1>
-      <p class="intro">
-        Browse 200 useful collocations grouped into 20 themed sets. Click a button to reveal the phrases in that category.
-      </p>
+    
       <div class="grid" id="buttons"></div>
     </main>
 
@@ -448,19 +446,10 @@
         const button = document.createElement("button");
         button.className = "topic-btn";
         button.setAttribute("type", "button");
-        button.innerHTML = `<div class="topic-title">${topic.title}</div><div class="topic-count">${topic.collocations.length} collocations</div>`;
+        button.innerHTML = `<div class="topic-title">${topic.title}</div>`;
 
         button.addEventListener("click", () => {
-          const existing = document.querySelector(".panel.open");
-          if (existing && existing.dataset.index !== String(index)) {
-            existing.classList.remove("open");
-            document.querySelectorAll(".topic-btn.active").forEach((btn) => btn.classList.remove("active"));
-          }
-
-          const panel = document.getElementById(`panel-${index}`);
-          const isOpen = panel.classList.contains("open");
-          panel.classList.toggle("open", !isOpen);
-          button.classList.toggle("active", !isOpen);
+          window.location.href = `detail.html?topic=${encodeURIComponent(topic.title)}`;
         });
 
         buttonsContainer.appendChild(button);

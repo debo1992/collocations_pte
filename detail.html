@@ -47,16 +47,47 @@
         margin-bottom: 20px;
       }
 
+      .collocations-box {
+        margin-bottom: 24px;
+        padding: 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        background: #f8fafc;
+      }
+
+      .collocations-box h2 {
+        margin: 0 0 10px;
+        font-size: 1.05rem;
+      }
+
+      .collocations-list {
+        display: grid;
+        gap: 8px;
+        padding-left: 18px;
+        margin: 0;
+      }
+
+      .phrase-block {
+        margin-top: 18px;
+        padding: 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        background: #ffffff;
+      }
+
+      .phrase-block h3 {
+        margin: 0 0 10px;
+        font-size: 1.05rem;
+      }
+
       .examples {
         display: grid;
-        gap: 12px;
+        gap: 10px;
+        padding-left: 18px;
+        margin: 0;
       }
 
       .example {
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
-        background: #f8fafc;
-        padding: 12px 14px;
         line-height: 1.5;
       }
 
@@ -72,14 +103,1112 @@
   <body>
     <main class="page">
       <div class="card">
-        <h1 id="phrase-title">Collocation examples</h1>
-        <p class="subtitle">Five example sentences using this phrase in different contexts.</p>
-        <div class="examples" id="examples"></div>
+        <h1 id="topic-title">Collocation examples</h1>
+        <div class="collocations-box">
+          <h2>Collocations</h2>
+          <ul class="collocations-list" id="collocations-list"></ul>
+        </div>
+        <div id="examples"></div>
         <a class="back-link" href="index.html">← Back to all collocations</a>
       </div>
     </main>
 
     <script>
+      const topics = [
+        {
+          title: "Research & investigation",
+          collocations: [
+            "conduct research",
+            "carry out a study",
+            "gather data",
+            "analyze data",
+            "draw conclusions",
+            "present findings",
+            "review the literature",
+            "address the issue",
+            "investigate the phenomenon",
+            "examine the evidence"
+          ],
+          examples: {
+            "conduct research": [
+              "The team conducted research on urban migration patterns over a five-year period.",
+              "Before drawing any conclusions, it is essential to conduct thorough research into the topic.",
+              "Universities that conduct research at the highest level typically attract significant funding.",
+              "Research has been conducted across twelve countries to ensure the findings are generalisable.",
+              "She hopes to conduct research in the field of renewable energy after graduation."
+            ],
+            "carry out a study": [
+              "Scientists carried out a study involving over 5,000 participants.",
+              "A recent study was carried out to examine the effects of screen time on adolescents.",
+              "Researchers plan to carry out a longitudinal study spanning two decades.",
+              "The government commissioned a team to carry out a study on public transport efficiency.",
+              "Before any policy is introduced, a comprehensive study should be carried out."
+            ],
+            "gather data": [
+              "The app gathers data on user behaviour to improve its recommendations.",
+              "Researchers gathered data through interviews, surveys, and direct observation.",
+              "It took the team six months to gather enough data to reach a reliable conclusion.",
+              "Sensors placed across the city are constantly gathering data on air quality.",
+              "Once sufficient data has been gathered, the analysis phase can begin."
+            ],
+            "analyze data": [
+              "Analysts analyzed the data using advanced statistical software.",
+              "The data was analyzed to identify patterns in consumer spending.",
+              "Before you can analyze data meaningfully, it must be cleaned and organised.",
+              "Machine learning algorithms are increasingly used to analyze large volumes of data.",
+              "She spent weeks analyzing data collected from the pilot programme."
+            ],
+            "draw conclusions": [
+              "It is difficult to draw conclusions from such a small sample size.",
+              "The researchers drew several important conclusions from their findings.",
+              "Readers are invited to draw their own conclusions based on the evidence presented.",
+              "No firm conclusions can be drawn without further investigation.",
+              "From the graph, one might draw the conclusion that unemployment is falling steadily."
+            ],
+            "present findings": [
+              "The professor presented her findings at an international conference.",
+              "Findings will be presented in the final chapter of the report.",
+              "The team presented their preliminary findings to the funding committee.",
+              "He was invited to present the findings of the study on national television.",
+              "Scientists must present findings in a clear, accessible way for the public."
+            ],
+            "review the literature": [
+              "Before beginning the experiment, the student thoroughly reviewed the literature.",
+              "A comprehensive review of the literature revealed several gaps in existing research.",
+              "It is standard practice to review the literature in the opening chapter of a thesis.",
+              "The literature was reviewed to identify recurring themes and methodologies.",
+              "She reviewed relevant literature dating back to the 1970s."
+            ],
+            "address the issue": [
+              "The government has failed to address the issue of income inequality.",
+              "This report addresses the issue from multiple perspectives.",
+              "Companies must address the issue of workplace harassment head-on.",
+              "Unless the issue is addressed promptly, it will only worsen.",
+              "In her speech, the minister addressed the pressing issue of housing shortages."
+            ],
+            "investigate the phenomenon": [
+              "Scientists have long tried to investigate the phenomenon of consciousness.",
+              "The team investigated the phenomenon using state-of-the-art imaging technology.",
+              "Further studies are needed to investigate this phenomenon in greater depth.",
+              "Researchers are investigating the strange phenomenon observed in the Pacific.",
+              "The phenomenon has been investigated by scholars from many disciplines."
+            ],
+            "examine the evidence": [
+              "The jury was asked to examine the evidence carefully before reaching a verdict.",
+              "Scholars have examined the evidence and concluded that the theory is flawed.",
+              "It is important to examine all available evidence before making a judgement.",
+              "When we examine the evidence closely, a different picture emerges.",
+              "New evidence is being examined by an independent panel."
+            ]
+          }
+        },
+        {
+          title: "Presenting arguments & opinions",
+          collocations: [
+            "put forward an argument",
+            "present a viewpoint",
+            "hold the view",
+            "express an opinion",
+            "raise concerns",
+            "make a case",
+            "take a stance",
+            "offer insight",
+            "support the claim",
+            "challenge the assumption"
+          ],
+          examples: {
+            "put forward an argument": [
+              "The author puts forward a compelling argument for reforming the tax system.",
+              "Several scholars have put forward arguments against this interpretation.",
+              "In her essay, she put forward the argument that education should be free for all.",
+              "The argument put forward in the report deserves serious consideration.",
+              "He put forward an argument so persuasive that even his critics agreed."
+            ],
+            "present a viewpoint": [
+              "Each speaker was given ten minutes to present their viewpoint.",
+              "The article presents a viewpoint rarely heard in mainstream media.",
+              "It is important to present alternative viewpoints in a balanced essay.",
+              "She presented her viewpoint with clarity and confidence.",
+              "Different viewpoints were presented during the debate."
+            ],
+            "hold the view": [
+              "Many economists hold the view that inflation will continue to rise.",
+              "She holds the view that traditional education is no longer fit for purpose.",
+              "Those who hold this view often overlook important counter-evidence.",
+              "He has long held the view that governments should invest more in science.",
+              "The committee holds the view that reforms are urgently needed."
+            ],
+            "express an opinion": [
+              "Employees are encouraged to express their opinions openly during meetings.",
+              "She rarely expresses an opinion unless she has thoroughly researched the topic.",
+              "Social media allows anyone to express their opinion on almost anything.",
+              "The right to express opinions freely is a cornerstone of democracy.",
+              "He expressed a strong opinion on the proposed reforms."
+            ],
+            "raise concerns": [
+              "Parents have raised concerns about the new curriculum.",
+              "The report raises serious concerns about data privacy.",
+              "Several members of the committee raised concerns during the meeting.",
+              "Concerns have been raised regarding the safety of the new drug.",
+              "She raised concerns about the lack of transparency in the process."
+            ],
+            "make a case": [
+              "The lawyer made a strong case for her client's innocence.",
+              "It is possible to make a case for both sides of this debate.",
+              "The report makes a compelling case for increased investment in education.",
+              "She made an eloquent case in favour of the reforms.",
+              "A case can be made that technology has done more harm than good."
+            ],
+            "take a stance": [
+              "The government has refused to take a clear stance on the issue.",
+              "She took a firm stance against the proposed legislation.",
+              "It is time for the international community to take a stance.",
+              "Companies are increasingly expected to take a stance on social issues.",
+              "He took the stance that education should remain publicly funded."
+            ],
+            "offer insight": [
+              "Her research offers valuable insight into consumer behaviour.",
+              "The interviews offered insight into the daily lives of migrant workers.",
+              "This book offers rare insight into how the human brain processes emotion.",
+              "The professor's lecture offered fresh insight into an old problem.",
+              "Fresh insights are offered by the latest generation of scholars."
+            ],
+            "support the claim": [
+              "There is little evidence to support the claim that video games cause violence.",
+              "Several studies support the claim made in the article.",
+              "To support this claim, the author cites data from multiple sources.",
+              "His argument was supported by compelling statistical claims.",
+              "Without evidence to support such a claim, it remains speculation."
+            ],
+            "challenge the assumption": [
+              "The new research challenges the assumption that money buys happiness.",
+              "Students are encouraged to challenge assumptions rather than accept them uncritically.",
+              "Her findings challenge long-held assumptions about human memory.",
+              "It is time to challenge the assumption that growth is always beneficial.",
+              "Every scientific breakthrough begins by challenging an assumption."
+            ]
+          }
+        },
+        {
+          title: "Analysis & discussion",
+          collocations: [
+            "play a crucial role",
+            "shed light on",
+            "take into account",
+            "bear in mind",
+            "focus attention on",
+            "draw a distinction",
+            "establish a link",
+            "identify patterns",
+            "highlight the importance",
+            "raise questions"
+          ]
+        },
+        {
+          title: "Cause & effect",
+          collocations: [
+            "have an impact on",
+            "exert influence",
+            "give rise to",
+            "lead to consequences",
+            "bring about change",
+            "contribute to development",
+            "result from factors",
+            "cause concern",
+            "produce results",
+            "trigger a response"
+          ]
+        },
+        {
+          title: "Evidence & support",
+          collocations: [
+            "provide evidence",
+            "cite examples",
+            "draw on research",
+            "offer proof",
+            "back up a claim",
+            "support the argument",
+            "rely on data",
+            "present statistics",
+            "reference sources",
+            "confirm the hypothesis"
+          ]
+        },
+        {
+          title: "Comparison & contrast",
+          collocations: [
+            "draw a comparison",
+            "make a distinction",
+            "share similarities",
+            "bear resemblance to",
+            "differ significantly",
+            "contrast sharply",
+            "correspond closely",
+            "diverge from",
+            "align with",
+            "deviate from"
+          ]
+        },
+        {
+          title: "Change & development",
+          collocations: [
+            "undergo change",
+            "experience growth",
+            "bring about improvement",
+            "facilitate progress",
+            "drive innovation",
+            "spark development",
+            "accelerate growth",
+            "hinder progress",
+            "promote awareness",
+            "foster understanding"
+          ]
+        },
+        {
+          title: "Emphasis & degree",
+          collocations: [
+            "play a significant role",
+            "exert considerable influence",
+            "show a marked increase",
+            "reach a peak",
+            "witness a decline",
+            "gain popularity",
+            "attract attention",
+            "receive recognition",
+            "carry weight",
+            "hold significance"
+          ]
+        },
+        {
+          title: "Conclusion & recommendation",
+          collocations: [
+            "reach a conclusion",
+            "draw an inference",
+            "make a recommendation",
+            "propose a solution",
+            "suggest an approach",
+            "offer a perspective",
+            "summarize findings",
+            "weigh the evidence",
+            "consider implications",
+            "address limitations"
+          ]
+        },
+        {
+          title: "High-frequency adjective + noun pairs",
+          collocations: [
+            "significant impact",
+            "widespread concern",
+            "compelling evidence",
+            "viable solution",
+            "profound effect",
+            "underlying cause",
+            "potential consequences",
+            "valuable insight",
+            "fundamental principle",
+            "comprehensive analysis"
+          ]
+        },
+        {
+          title: "Hedging & cautious language (high-band boost)",
+          collocations: [
+            "it could be argued that",
+            "it is widely believed that",
+            "it appears that",
+            "it seems likely that",
+            "this suggests that",
+            "this indicates that",
+            "one possible explanation",
+            "to a certain extent",
+            "in most cases",
+            "tends to suggest"
+          ]
+        },
+        {
+          title: "Linking & signposting",
+          collocations: [
+            "in addition to this",
+            "furthermore, it should be noted",
+            "moreover, evidence suggests",
+            "on the other hand",
+            "in contrast to this",
+            "despite this fact",
+            "as a consequence",
+            "for this reason",
+            "in light of this",
+            "with regard to"
+          ],
+          examples: {
+            "in addition to this": [
+              "In addition to this, the report highlights three further concerns.",
+              "The plan is cost-effective; in addition to this, it is environmentally friendly.",
+              "In addition to this, participants received a follow-up interview.",
+              "She speaks four languages; in addition to this, she plays several instruments.",
+              "In addition to this finding, the study revealed unexpected trends."
+            ],
+            "furthermore, it should be noted": [
+              "Furthermore, it should be noted that the sample size was limited.",
+              "Furthermore, it should be noted that these are preliminary findings.",
+              "Furthermore, it should be noted that not all participants completed the survey.",
+              "Furthermore, it should be noted that similar results have emerged elsewhere.",
+              "Furthermore, it should be noted that the study was funded independently."
+            ],
+            "moreover, evidence suggests": [
+              "Moreover, evidence suggests that the trend is accelerating.",
+              "Moreover, evidence suggests a stronger link than previously thought.",
+              "Moreover, evidence suggests that early intervention is critical.",
+              "Moreover, recent evidence suggests that the assumption may be flawed.",
+              "Moreover, mounting evidence suggests that action is urgently needed."
+            ],
+            "on the other hand": [
+              "Cars offer convenience; on the other hand, they contribute to pollution.",
+              "On the other hand, one could argue that regulation stifles innovation.",
+              "She is talented; on the other hand, she lacks experience.",
+              "On the other hand, there are significant risks to consider.",
+              "On the other hand, some experts remain unconvinced."
+            ],
+            "in contrast to this": [
+              "In contrast to this, developing nations face very different challenges.",
+              "In contrast to this view, some scholars argue that culture is the key factor.",
+              "In contrast to this, urban areas showed a decline in participation.",
+              "In contrast to this, the second experiment produced clear results.",
+              "In contrast to this, historical evidence tells a different story."
+            ],
+            "despite this fact": [
+              "Despite this fact, the government has refused to act.",
+              "The risks are well documented; despite this fact, sales continue to rise.",
+              "Despite this fact, many citizens remain uninformed.",
+              "Despite this fact, she chose to pursue the career anyway.",
+              "Despite this fact, no significant changes have been made."
+            ],
+            "as a consequence": [
+              "Prices rose sharply; as a consequence, demand fell.",
+              "As a consequence of the new law, many small firms have closed.",
+              "He missed the deadline and, as a consequence, lost the contract.",
+              "As a consequence, the entire project was delayed by six months.",
+              "Poor planning meant that, as a consequence, the launch was postponed."
+            ],
+            "for this reason": [
+              "For this reason, further research is essential.",
+              "Coastal cities face unique risks; for this reason, they need tailored policies.",
+              "For this reason, the committee has recommended a full review.",
+              "The data is unreliable; for this reason, we cannot draw firm conclusions.",
+              "For this reason alone, the proposal deserves serious consideration."
+            ],
+            "in light of this": [
+              "In light of this, the policy should be reconsidered.",
+              "In light of this new evidence, the case will be reopened.",
+              "In light of this, we recommend a change of strategy.",
+              "In light of this development, funding priorities may shift.",
+              "In light of this, several protocols have been updated."
+            ],
+            "with regard to": [
+              "With regard to funding, the situation remains unclear.",
+              "With regard to the recent proposal, several concerns have been raised.",
+              "With regard to environmental policy, the two candidates differ sharply.",
+              "With regard to your question, the answer is more complex than it appears.",
+              "With regard to the timeline, we expect delays."
+            ]
+          }
+        },
+        {
+          title: "Problem & solution",
+          collocations: [
+            "tackle the problem",
+            "address the challenge",
+            "overcome the obstacle",
+            "resolve the issue",
+            "mitigate the risk",
+            "alleviate the burden",
+            "combat the problem",
+            "find a remedy",
+            "implement measures",
+            "adopt strategies"
+          ],
+          examples: {
+            "tackle the problem": [
+              "The government must tackle the problem of youth unemployment.",
+              "She was determined to tackle the problem head-on.",
+              "The problem has been tackled through a combination of policy and community action.",
+              "Simply throwing money at it will not tackle the problem.",
+              "To tackle the problem effectively, we need cross-sector collaboration."
+            ],
+            "address the challenge": [
+              "Governments worldwide must address the challenge of climate change.",
+              "The organisation was founded to address the challenge of adult illiteracy.",
+              "Challenges of this scale cannot be addressed by one country alone.",
+              "She addressed the challenge with creativity and determination.",
+              "Without international cooperation, we cannot hope to address this challenge."
+            ],
+            "overcome the obstacle": [
+              "She managed to overcome every obstacle in her path.",
+              "Refugees often overcome enormous obstacles to build new lives.",
+              "Obstacles can be overcome through persistence and support.",
+              "To succeed in this field, one must overcome many obstacles.",
+              "Overcoming the obstacle required an entirely new approach."
+            ],
+            "resolve the issue": [
+              "The management team worked to resolve the issue quickly.",
+              "The issue was resolved through arbitration.",
+              "Resolving the issue requires input from all stakeholders.",
+              "Several attempts to resolve the issue have failed.",
+              "Until the issue is resolved, tensions will remain."
+            ],
+            "mitigate the risk": [
+              "Insurance is one way to mitigate the risk of financial loss.",
+              "Safety protocols are designed to mitigate the risk of accidents.",
+              "Risks can be mitigated through careful planning.",
+              "Companies must mitigate the risk of cyberattacks.",
+              "Diversifying investments helps to mitigate risk."
+            ],
+            "alleviate the burden": [
+              "The programme is designed to alleviate the burden on working families.",
+              "Government subsidies can alleviate the burden of high energy costs.",
+              "Automation may alleviate the burden of repetitive tasks.",
+              "The burden was alleviated by additional funding.",
+              "Support networks help alleviate the emotional burden of caregiving."
+            ],
+            "combat the problem": [
+              "A range of measures have been introduced to combat the problem of obesity.",
+              "Communities are working together to combat the problem of drug addiction.",
+              "No single approach can combat the problem entirely.",
+              "To combat the problem of illegal fishing, stricter enforcement is required.",
+              "Education is one of the most powerful tools to combat this problem."
+            ],
+            "find a remedy": [
+              "Doctors have yet to find a remedy for the condition.",
+              "Policymakers are struggling to find a remedy for rising inequality.",
+              "A remedy must be found before the situation worsens.",
+              "Traditional cultures often find remedies in local plants.",
+              "Finding a remedy requires collaboration across disciplines."
+            ],
+            "implement measures": [
+              "The city has implemented measures to reduce traffic congestion.",
+              "Strict measures were implemented to control the outbreak.",
+              "Governments must implement measures to protect vulnerable groups.",
+              "The company implemented several measures to improve safety.",
+              "Implementing measures without public buy-in rarely succeeds."
+            ],
+            "adopt strategies": [
+              "Schools are adopting strategies to improve student wellbeing.",
+              "Companies must adopt new strategies to remain competitive.",
+              "Strategies were adopted based on best practices from other countries.",
+              "She adopted a strategy of gradual change rather than sudden reform.",
+              "Adopting strategies proven elsewhere is often the fastest path to success."
+            ]
+          }
+        },
+        {
+          title: "Trends & statistics (for graph/essay tasks)",
+          collocations: [
+            "show an upward trend",
+            "experience a sharp rise",
+            "remain relatively stable",
+            "fluctuate significantly",
+            "reach an all-time high",
+            "hit a record low",
+            "show a steady increase",
+            "undergo a dramatic shift",
+            "see a gradual decline",
+            "record substantial growth"
+          ],
+          examples: {
+            "show an upward trend": [
+              "The graph shows an upward trend in electric vehicle sales.",
+              "Youth participation has shown an upward trend since 2015.",
+              "Housing prices continue to show an upward trend.",
+              "An upward trend is shown across all major indicators.",
+              "Global temperatures have shown an upward trend for decades."
+            ],
+            "experience a sharp rise": [
+              "The country experienced a sharp rise in inflation last year.",
+              "Online sales experienced a sharp rise during the pandemic.",
+              "Unemployment experienced a sharp rise in the affected regions.",
+              "Cryptocurrency values have experienced sharp rises and falls.",
+              "Cities near the coast experienced a sharp rise in property prices."
+            ],
+            "remain relatively stable": [
+              "Interest rates have remained relatively stable for the past year.",
+              "Prices remained relatively stable despite market pressure.",
+              "The population has remained relatively stable since 2000.",
+              "Employment levels remained relatively stable through the crisis.",
+              "Public opinion on the issue has remained relatively stable."
+            ],
+            "fluctuate significantly": [
+              "Oil prices have fluctuated significantly in recent months.",
+              "Attendance figures fluctuate significantly from year to year.",
+              "Currency values fluctuate significantly in response to political events.",
+              "The results fluctuated significantly across the different trials.",
+              "Consumer spending tends to fluctuate significantly around holidays."
+            ],
+            "reach an all-time high": [
+              "Global temperatures reached an all-time high last August.",
+              "Company profits have reached an all-time high.",
+              "Youth unemployment reached an all-time high in the region.",
+              "The stock reached an all-time high before falling sharply.",
+              "Public trust in institutions is far from reaching an all-time high."
+            ],
+            "hit a record low": [
+              "Consumer confidence hit a record low during the recession.",
+              "Bee populations have hit a record low in several countries.",
+              "Voter turnout hit a record low in the last election.",
+              "Interest rates hit a record low and are only now recovering.",
+              "The temperature hit a record low for the month of March."
+            ],
+            "show a steady increase": [
+              "The chart shows a steady increase in enrolment.",
+              "Renewable energy adoption has shown a steady increase.",
+              "Life expectancy shows a steady increase across most nations.",
+              "Membership has shown a steady increase since the campaign began.",
+              "There is a steady increase shown in cross-border trade."
+            ],
+            "undergo a dramatic shift": [
+              "The industry has undergone a dramatic shift since the rise of streaming.",
+              "Public opinion underwent a dramatic shift after the incident.",
+              "Consumer preferences have undergone a dramatic shift toward sustainability.",
+              "The country is undergoing a dramatic shift in demographics.",
+              "Journalism has undergone a dramatic shift in the digital era."
+            ],
+            "see a gradual decline": [
+              "Newspaper readership has seen a gradual decline for two decades.",
+              "We are seeing a gradual decline in traditional retail.",
+              "Membership saw a gradual decline before recovering.",
+              "Wildlife populations have seen a gradual decline in the region.",
+              "Public trust in politicians has seen a gradual decline."
+            ],
+            "record substantial growth": [
+              "The tech sector recorded substantial growth in the last quarter.",
+              "Emerging economies have recorded substantial growth despite headwinds.",
+              "Substantial growth was recorded in the export sector.",
+              "E-commerce recorded substantial growth during lockdown.",
+              "The company recorded substantial growth after its restructuring."
+            ]
+          }
+        },
+        {
+          title: "Society & policy topics",
+          collocations: [
+            "shape public opinion",
+            "raise public awareness",
+            "implement policies",
+            "enforce regulations",
+            "impose restrictions",
+            "allocate resources",
+            "address inequality",
+            "bridge the gap",
+            "promote social cohesion",
+            "safeguard rights"
+          ],
+          examples: {
+            "shape public opinion": [
+              "The media plays a powerful role in shaping public opinion.",
+              "Politicians use speeches to shape public opinion on key issues.",
+              "Public opinion is shaped by a mix of news, social media, and personal experience.",
+              "Grassroots movements can shape public opinion as effectively as governments.",
+              "Advertisers spend billions trying to shape public opinion."
+            ],
+            "raise public awareness": [
+              "The campaign aims to raise public awareness of ocean pollution.",
+              "Documentaries can raise public awareness more effectively than statistics.",
+              "Public awareness was raised through a coordinated media campaign.",
+              "Celebrities often use their platforms to raise public awareness.",
+              "Raising public awareness is only the first step; action must follow."
+            ],
+            "implement policies": [
+              "The new administration has begun to implement policies on climate change.",
+              "Policies were implemented to address the housing crisis.",
+              "Governments must implement policies that support working families.",
+              "Implementing policies requires both funding and public support.",
+              "Once implemented, policies should be regularly reviewed."
+            ],
+            "enforce regulations": [
+              "The agency is responsible for enforcing regulations on food safety.",
+              "Regulations cannot be enforced without adequate staff.",
+              "Local authorities enforce regulations with varying degrees of strictness.",
+              "Companies must comply with regulations that are enforced by multiple bodies.",
+              "Enforcing regulations consistently is essential to public trust."
+            ],
+            "impose restrictions": [
+              "The government has imposed restrictions on international travel.",
+              "New restrictions were imposed on tobacco advertising.",
+              "Some argue that we impose too many restrictions on personal freedom.",
+              "Restrictions were imposed temporarily and later relaxed.",
+              "Cities are imposing restrictions on high-emission vehicles."
+            ],
+            "allocate resources": [
+              "Councils must allocate resources where they are most needed.",
+              "Resources are allocated based on population and need.",
+              "Efficient organisations allocate resources with careful planning.",
+              "The budget allocates resources to education and healthcare.",
+              "It is difficult to allocate resources fairly across all regions."
+            ],
+            "address inequality": [
+              "Progressive taxation is one way to address inequality.",
+              "The government has pledged to address inequality in education.",
+              "Inequality cannot be addressed by economic policy alone.",
+              "To address inequality, we must confront its historical roots.",
+              "Many charities work to address inequality at the community level."
+            ],
+            "bridge the gap": [
+              "Scholarships help to bridge the gap between rich and poor students.",
+              "Technology has the potential to bridge the gap between rural and urban services.",
+              "Bridging the gap requires investment and long-term commitment.",
+              "New programmes aim to bridge the gap between generations.",
+              "The gap can only be bridged through sustained effort."
+            ],
+            "promote social cohesion": [
+              "Community events promote social cohesion in diverse neighbourhoods.",
+              "Governments should promote social cohesion through inclusive policies.",
+              "Sports can promote social cohesion across cultural divides.",
+              "Social cohesion is promoted when everyone feels heard.",
+              "Education systems play a key role in promoting social cohesion."
+            ],
+            "safeguard rights": [
+              "The constitution exists to safeguard the rights of every citizen.",
+              "Independent courts safeguard rights against government overreach.",
+              "Rights must be safeguarded even in times of crisis.",
+              "NGOs work to safeguard the rights of vulnerable groups.",
+              "Safeguarding rights is a duty shared by government and citizens."
+            ]
+          }
+        },
+        {
+          title: "Education topics",
+          collocations: [
+            "acquire knowledge",
+            "develop skills",
+            "broaden horizons",
+            "foster creativity",
+            "instill values",
+            "pursue higher education",
+            "meet academic standards",
+            "bridge the skills gap",
+            "equip students with",
+            "enhance learning outcomes"
+          ],
+          examples: {
+            "acquire knowledge": [
+              "Students acquire knowledge through both study and experience.",
+              "Knowledge is acquired more effectively when learners are engaged.",
+              "She travelled the world to acquire knowledge of different cultures.",
+              "Curiosity is the fastest way to acquire knowledge.",
+              "In the digital age, we can acquire knowledge on almost any topic instantly."
+            ],
+            "develop skills": [
+              "Extracurricular activities help children develop skills beyond the classroom.",
+              "The programme is designed to develop practical skills for the workplace.",
+              "Skills are developed through consistent practice.",
+              "She developed her skills through years of dedication.",
+              "To succeed, one must continuously develop new skills."
+            ],
+            "broaden horizons": [
+              "Travel broadens horizons in ways no classroom can match.",
+              "Reading widely broadens your horizons and deepens empathy.",
+              "Studying abroad broadens students' horizons significantly.",
+              "Horizons can be broadened through even small new experiences.",
+              "She encouraged her children to broaden their horizons through curiosity."
+            ],
+            "foster creativity": [
+              "Open-ended tasks foster creativity in young learners.",
+              "A supportive environment fosters creativity.",
+              "Creativity is fostered when students are given the freedom to explore.",
+              "Schools should foster creativity alongside academic achievement.",
+              "Some argue that testing culture fails to foster creativity."
+            ],
+            "instill values": [
+              "Parents work hard to instill values in their children.",
+              "Values are instilled through both words and example.",
+              "Schools have a role in instilling values such as honesty and respect.",
+              "She believed sport could instill values like teamwork and perseverance.",
+              "Instilling values early has lifelong effects."
+            ],
+            "pursue higher education": [
+              "Many students pursue higher education immediately after school.",
+              "He pursued higher education later in life while working full-time.",
+              "Not everyone chooses to pursue higher education, and that is a valid choice.",
+              "Financial support enables more students to pursue higher education.",
+              "Pursuing higher education abroad has become increasingly common."
+            ],
+            "meet academic standards": [
+              "All applicants must meet the academic standards set by the university.",
+              "Schools that fail to meet academic standards may lose funding.",
+              "Academic standards are met through rigorous assessment.",
+              "She worked hard to meet the academic standards required for the scholarship.",
+              "Meeting academic standards should not come at the cost of student wellbeing."
+            ],
+            "bridge the skills gap": [
+              "Vocational programmes help bridge the skills gap in manufacturing.",
+              "Businesses partner with schools to bridge the skills gap.",
+              "The skills gap can be bridged through targeted training.",
+              "To bridge the skills gap, we need to modernise the curriculum.",
+              "Bridging the skills gap is a shared responsibility."
+            ],
+            "equip students with": [
+              "The course aims to equip students with critical thinking skills.",
+              "Modern schools should equip students with digital literacy.",
+              "Students are equipped with both knowledge and confidence.",
+              "The programme equips students with the tools to succeed in any field.",
+              "It is not enough to teach facts; we must equip students with the ability to apply them."
+            ],
+            "enhance learning outcomes": [
+              "Small class sizes have been shown to enhance learning outcomes.",
+              "Technology can enhance learning outcomes when used purposefully.",
+              "Learning outcomes were enhanced through the new curriculum.",
+              "Feedback from teachers enhances learning outcomes significantly.",
+              "Research consistently shows that engagement enhances learning outcomes."
+            ]
+          }
+        },
+        {
+          title: "Technology topics",
+          collocations: [
+            "embrace technology",
+            "adopt innovations",
+            "transform industries",
+            "streamline processes",
+            "raise privacy concerns",
+            "pose ethical questions",
+            "revolutionize the way",
+            "narrow the digital divide",
+            "harness the potential",
+            "keep pace with change"
+          ],
+          examples: {
+            "embrace technology": [
+              "Older generations are increasingly embracing technology.",
+              "Businesses that embrace technology tend to outperform those that don't.",
+              "Schools must embrace technology while remaining critical of it.",
+              "Technology has been embraced more quickly in some sectors than others.",
+              "Embracing technology does not mean abandoning traditional methods."
+            ],
+            "adopt innovations": [
+              "Farmers are adopting innovations that reduce water use.",
+              "Small businesses can be slow to adopt innovations.",
+              "Innovations are adopted most quickly when they solve real problems.",
+              "Hospitals have adopted innovations in surgical technology.",
+              "Countries that adopt innovations early often gain a competitive edge."
+            ],
+            "transform industries": [
+              "Artificial intelligence is set to transform industries across the board.",
+              "The internet has transformed the retail industry.",
+              "Industries have been transformed by automation.",
+              "Renewable energy is transforming the power industry.",
+              "Few innovations transform industries as quickly as social media did."
+            ],
+            "streamline processes": [
+              "New software helps streamline processes in the finance department.",
+              "The company streamlined its processes to reduce costs.",
+              "Processes were streamlined to eliminate unnecessary steps.",
+              "Streamlining processes often improves both speed and quality.",
+              "Small businesses can streamline processes without expensive tools."
+            ],
+            "raise privacy concerns": [
+              "Facial recognition technology has raised serious privacy concerns.",
+              "The new app raised privacy concerns among users.",
+              "Privacy concerns have been raised about the government's data collection.",
+              "Any technology that tracks users is likely to raise privacy concerns.",
+              "The report raises privacy concerns that regulators cannot ignore."
+            ],
+            "pose ethical questions": [
+              "Gene editing poses ethical questions that scientists must address.",
+              "Artificial intelligence poses ethical questions about accountability.",
+              "Ethical questions are posed by every major technological breakthrough.",
+              "Autonomous weapons pose profound ethical questions.",
+              "Journalism in the digital age poses ethical questions about privacy."
+            ],
+            "revolutionize the way": [
+              "Smartphones revolutionized the way we communicate.",
+              "Streaming has revolutionized the way we consume media.",
+              "Artificial intelligence may revolutionize the way we work.",
+              "Online learning revolutionized the way universities operate.",
+              "The printing press revolutionized the way knowledge was shared."
+            ],
+            "narrow the digital divide": [
+              "Governments are investing in broadband to narrow the digital divide.",
+              "Community centres help narrow the digital divide for older residents.",
+              "The digital divide can be narrowed through affordable devices and internet access.",
+              "Narrowing the digital divide is essential for economic equality.",
+              "Educational programmes narrow the digital divide by building digital literacy."
+            ],
+            "harness the potential": [
+              "Companies are racing to harness the potential of artificial intelligence.",
+              "Educators must harness the potential of online tools.",
+              "The potential of renewable energy has yet to be fully harnessed.",
+              "Cities are beginning to harness the potential of big data.",
+              "Harnessing the potential of young talent is critical for any organisation."
+            ],
+            "keep pace with change": [
+              "Traditional industries struggle to keep pace with change in the digital economy.",
+              "Regulations must keep pace with change in technology.",
+              "Continuous learning is essential to keep pace with change.",
+              "Small businesses often cannot keep pace with change as quickly as large firms.",
+              "Education systems must keep pace with change or risk becoming irrelevant."
+            ]
+          }
+        },
+        {
+          title: "Environment topics",
+          collocations: [
+            "reduce carbon emissions",
+            "combat climate change",
+            "protect biodiversity",
+            "deplete natural resources",
+            "adopt sustainable practices",
+            "raise environmental awareness",
+            "minimize environmental impact",
+            "preserve ecosystems",
+            "transition to renewables",
+            "tackle pollution"
+          ],
+          examples: {
+            "reduce carbon emissions": [
+              "Countries have pledged to reduce carbon emissions by 2050.",
+              "Switching to electric vehicles helps reduce carbon emissions.",
+              "Carbon emissions must be reduced to meet climate targets.",
+              "Small changes at home can reduce carbon emissions meaningfully.",
+              "The company aims to reduce its carbon emissions by 40 percent."
+            ],
+            "combat climate change": [
+              "Global cooperation is essential to combat climate change.",
+              "Reforestation is one strategy to combat climate change.",
+              "Climate change can only be combated through collective action.",
+              "Cities are combating climate change with innovative urban planning.",
+              "Individuals as well as governments must combat climate change."
+            ],
+            "protect biodiversity": [
+              "National parks are established to protect biodiversity.",
+              "Farming practices can either harm or protect biodiversity.",
+              "Biodiversity must be protected for the health of the planet.",
+              "Protecting biodiversity benefits humans as much as wildlife.",
+              "Marine reserves protect biodiversity in the world's oceans."
+            ],
+            "deplete natural resources": [
+              "Modern consumption patterns deplete natural resources at an unsustainable rate.",
+              "Mining activities have depleted natural resources in the region.",
+              "Natural resources are being depleted faster than they can be replenished.",
+              "Depleting natural resources affects future generations most of all.",
+              "Overfishing continues to deplete natural resources in coastal waters."
+            ],
+            "adopt sustainable practices": [
+              "Businesses are increasingly adopting sustainable practices.",
+              "Farmers who adopt sustainable practices often see long-term benefits.",
+              "Sustainable practices have been adopted by major supermarket chains.",
+              "Consumers can encourage companies to adopt sustainable practices.",
+              "Universities are adopting sustainable practices in their operations."
+            ],
+            "raise environmental awareness": [
+              "School programmes aim to raise environmental awareness among young people.",
+              "Documentaries have played a major role in raising environmental awareness.",
+              "Environmental awareness has been raised through global campaigns.",
+              "Social media is a powerful tool for raising environmental awareness.",
+              "The organisation was founded to raise environmental awareness in urban communities."
+            ],
+            "minimize environmental impact": [
+              "The new factory is designed to minimize environmental impact.",
+              "Companies must minimize the environmental impact of their operations.",
+              "Environmental impact can be minimized through careful planning.",
+              "Choosing local products helps minimize environmental impact.",
+              "Regulations require builders to minimize environmental impact on protected land."
+            ],
+            "preserve ecosystems": [
+              "Conservationists work tirelessly to preserve ecosystems under threat.",
+              "Governments have a duty to preserve ecosystems for future generations.",
+              "Ecosystems are preserved through a combination of law and community action.",
+              "Indigenous communities have long known how to preserve ecosystems.",
+              "Preserving ecosystems requires understanding how they function."
+            ],
+            "transition to renewables": [
+              "The country is aiming to transition to renewables by 2035.",
+              "Transitioning to renewables requires significant infrastructure investment.",
+              "Households can transition to renewables by installing solar panels.",
+              "The transition to renewables creates jobs as well as reduces emissions.",
+              "Some regions have already largely transitioned to renewables."
+            ],
+            "tackle pollution": [
+              "Cities around the world are struggling to tackle pollution.",
+              "New laws aim to tackle pollution from industrial sources.",
+              "Pollution must be tackled at both local and global levels.",
+              "Grassroots movements have been effective in tackling pollution.",
+              "Tackling pollution requires cooperation between government, business, and citizens."
+            ]
+          }
+        },
+        {
+          title: "Health topics",
+          collocations: [
+            "maintain a healthy lifestyle",
+            "reduce the risk of",
+            "improve wellbeing",
+            "tackle obesity",
+            "raise health awareness",
+            "access healthcare services",
+            "adopt healthy habits",
+            "address mental health",
+            "prevent chronic disease",
+            "promote physical activity"
+          ],
+          examples: {
+            "maintain a healthy lifestyle": [
+              "It is easier to maintain a healthy lifestyle with support from friends.",
+              "Many people struggle to maintain a healthy lifestyle with busy schedules.",
+              "A healthy lifestyle can be maintained with small, consistent habits.",
+              "Maintaining a healthy lifestyle reduces the risk of many diseases.",
+              "She has maintained a healthy lifestyle for over twenty years."
+            ],
+            "reduce the risk of": [
+              "Regular exercise reduces the risk of heart disease.",
+              "Vaccination programmes reduce the risk of serious illness.",
+              "Wearing a helmet reduces the risk of head injury.",
+              "The risk of infection can be reduced through simple hygiene measures.",
+              "Eating a varied diet reduces the risk of nutritional deficiencies."
+            ],
+            "improve wellbeing": [
+              "Spending time in nature improves wellbeing significantly.",
+              "The programme aims to improve wellbeing among the elderly.",
+              "Wellbeing is improved by strong social connections.",
+              "Small acts of kindness can improve wellbeing for both giver and receiver.",
+              "Employers are investing in initiatives to improve wellbeing at work."
+            ],
+            "tackle obesity": [
+              "Schools have introduced programmes to tackle obesity among children.",
+              "Public health campaigns aim to tackle obesity through education.",
+              "Obesity must be tackled at multiple levels — individual, community, and policy.",
+              "Some countries have used taxes on sugary drinks to tackle obesity.",
+              "Tackling obesity requires more than just personal willpower."
+            ],
+            "raise health awareness": [
+              "October is used to raise health awareness about breast cancer.",
+              "Celebrities often share their stories to raise health awareness.",
+              "Health awareness is raised through campaigns, education, and media.",
+              "Community events raise health awareness in an accessible way.",
+              "Raising health awareness can save lives when it leads to early detection."
+            ],
+            "access healthcare services": [
+              "Many rural residents struggle to access healthcare services.",
+              "Telemedicine helps patients access healthcare services remotely.",
+              "Healthcare services can be accessed through both public and private systems.",
+              "Barriers to accessing healthcare services must be addressed.",
+              "The elderly often need assistance to access healthcare services."
+            ],
+            "adopt healthy habits": [
+              "It is never too late to adopt healthy habits.",
+              "Children who adopt healthy habits early tend to keep them for life.",
+              "Healthy habits are adopted more easily in a supportive environment.",
+              "Adopting healthy habits doesn't require dramatic lifestyle changes.",
+              "Small, consistent changes are the most reliable way to adopt healthy habits."
+            ],
+            "address mental health": [
+              "Employers are increasingly willing to address mental health in the workplace.",
+              "Schools must address mental health alongside academic performance.",
+              "Mental health must be addressed with the same seriousness as physical health.",
+              "Society has begun to address mental health more openly than in the past.",
+              "Addressing mental health requires reducing stigma and improving access to care."
+            ],
+            "prevent chronic disease": [
+              "Lifestyle changes can prevent chronic disease in many cases.",
+              "Early screening helps prevent chronic disease from developing.",
+              "Chronic disease can often be prevented through diet and exercise.",
+              "Preventing chronic disease saves both lives and healthcare costs.",
+              "Public health policy plays a central role in preventing chronic disease."
+            ],
+            "promote physical activity": [
+              "Cities are redesigning streets to promote physical activity.",
+              "Schools have a duty to promote physical activity among students.",
+              "Physical activity is promoted through both education and infrastructure.",
+              "Employers can promote physical activity by supporting active commuting.",
+              "Promoting physical activity benefits both individuals and communities."
+            ]
+          }
+        },
+        {
+          title: "Higher-band verb + noun pairs",
+          collocations: [
+            "broaden understanding",
+            "reinforce the notion",
+            "underscore the importance",
+            "cast doubt on",
+            "call into question",
+            "lay the foundation for",
+            "pave the way for",
+            "yield results",
+            "warrant further investigation",
+            "bear significant implications"
+          ],
+          examples: {
+            "broaden understanding": [
+              "Reading fiction broadens our understanding of other lives.",
+              "The course aims to broaden students' understanding of global issues.",
+              "Understanding is broadened through exposure to different perspectives.",
+              "Travel broadens understanding in ways that books cannot.",
+              "Dialogue broadens understanding between cultures."
+            ],
+            "reinforce the notion": [
+              "Media portrayals often reinforce the notion that success equals wealth.",
+              "Recent findings reinforce the notion that sleep is essential for learning.",
+              "The notion is reinforced by decades of anecdotal evidence.",
+              "Advertising reinforces the notion that we always need more.",
+              "His experiences reinforced the notion that persistence pays off."
+            ],
+            "underscore the importance": [
+              "The pandemic underscored the importance of a resilient health system.",
+              "Recent events underscore the importance of scientific literacy.",
+              "The report underscores the importance of early intervention.",
+              "Her research underscores the importance of cultural context.",
+              "This finding underscores the importance of longitudinal studies."
+            ],
+            "cast doubt on": [
+              "New evidence casts doubt on the original theory.",
+              "The witness's inconsistencies cast doubt on her testimony.",
+              "Recent revelations have cast doubt on the government's version of events.",
+              "His track record casts doubt on the promises he is making now.",
+              "The failed trial cast doubt on the drug's effectiveness."
+            ],
+            "call into question": [
+              "The scandal calls into question the integrity of the entire institution.",
+              "Recent research calls into question long-held assumptions about the brain.",
+              "The results have called into question the validity of the methodology.",
+              "His behaviour calls into question his suitability for the role.",
+              "These findings call into question the safety of the product."
+            ],
+            "lay the foundation for": [
+              "Early childhood education lays the foundation for lifelong learning.",
+              "This research lays the foundation for further work in the field.",
+              "The treaty laid the foundation for decades of cooperation.",
+              "Sound financial habits lay the foundation for future stability.",
+              "Her work laid the foundation for an entirely new discipline."
+            ],
+            "pave the way for": [
+              "Her breakthrough paved the way for future generations of scientists.",
+              "The reforms paved the way for greater economic freedom.",
+              "This case has paved the way for similar rulings across the country.",
+              "Early pioneers paved the way for modern space exploration.",
+              "Public consultation paved the way for a policy that had broad support."
+            ],
+            "yield results": [
+              "Consistent effort will eventually yield results.",
+              "The new approach is beginning to yield results.",
+              "Results were yielded within just three months of implementation.",
+              "The strategy yielded impressive results in the first quarter.",
+              "Not every experiment yields results, but each one teaches something."
+            ],
+            "warrant further investigation": [
+              "The findings warrant further investigation by independent researchers.",
+              "Several inconsistencies warrant further investigation.",
+              "The unusual results warrant further investigation before publication.",
+              "This case clearly warrants further investigation.",
+              "Whether the effect is causal warrants further investigation."
+            ],
+            "bear significant implications": [
+              "The ruling bears significant implications for civil liberties.",
+              "These findings bear significant implications for public policy.",
+              "Her research bears significant implications for the way we teach reading.",
+              "The decision will bear significant implications for years to come.",
+              "This trend bears significant implications for the global economy."
+            ]
+          }
+        }
+      ];
+
       function generateAcademicExamples(phrase) {
         const safePhrase = phrase || "this collocation";
         return [
@@ -92,13 +1221,30 @@
       }
 
       const params = new URLSearchParams(window.location.search);
-      const phrase = params.get("phrase") || "conduct research";
-      document.getElementById("phrase-title").textContent = phrase;
+      const topicTitle = params.get("topic") || "Research & investigation";
+      const topic = topics.find((entry) => entry.title === topicTitle) || topics[0];
+
+      document.getElementById("topic-title").textContent = topic.title;
+
+      const collocationsList = document.getElementById("collocations-list");
+      collocationsList.innerHTML = topic.collocations
+        .map((phrase) => `<li>${phrase}</li>`)
+        .join("");
 
       const container = document.getElementById("examples");
-      const examples = generateAcademicExamples(phrase);
-      container.innerHTML = examples
-        .map((sentence) => `<div class="example">${sentence}</div>`)
+      container.innerHTML = topic.collocations
+        .map((phrase) => {
+          const examples = (topic.examples && topic.examples[phrase]) || generateAcademicExamples(phrase);
+          const items = examples
+            .map((sentence) => `<li class="example">${sentence}</li>`)
+            .join("");
+          return `
+            <section class="phrase-block">
+              <h3>${phrase}</h3>
+              <ol class="examples">${items}</ol>
+            </section>
+          `;
+        })
         .join("");
     </script>
   </body>
