@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collocation Examples</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --accent: #2563eb;
+        --border: #dbe3ef;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 1.8rem;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        margin-bottom: 20px;
+      }
+
+      .examples {
+        display: grid;
+        gap: 12px;
+      }
+
+      .example {
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        background: #f8fafc;
+        padding: 12px 14px;
+        line-height: 1.5;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="card">
+        <h1 id="phrase-title">Collocation examples</h1>
+        <p class="subtitle">Five example sentences using this phrase in different contexts.</p>
+        <div class="examples" id="examples"></div>
+        <a class="back-link" href="index.html">← Back to all collocations</a>
+      </div>
+    </main>
+
+    <script>
+      function generateAcademicExamples(phrase) {
+        const safePhrase = phrase || "this collocation";
+        return [
+          `The authors employ the collocation "${safePhrase}" to signal a precise academic relationship.`,
+          `In this section, the phrase "${safePhrase}" helps clarify the argument presented by the researcher.`,
+          `When discussing methodology, scholars often use "${safePhrase}" to convey a strong analytical point.`,
+          `The expression "${safePhrase}" appears repeatedly in academic discourse because it communicates nuance and precision.`,
+          `By choosing "${safePhrase}" carefully, writers can strengthen the credibility of their analysis.`
+        ];
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const phrase = params.get("phrase") || "conduct research";
+      document.getElementById("phrase-title").textContent = phrase;
+
+      const container = document.getElementById("examples");
+      const examples = generateAcademicExamples(phrase);
+      container.innerHTML = examples
+        .map((sentence) => `<div class="example">${sentence}</div>`)
+        .join("");
+    </script>
+  </body>
+</html>
